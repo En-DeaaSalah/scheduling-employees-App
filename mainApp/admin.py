@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Job)
 admin.site.register(Employee)
 admin.site.register(EmployeeProfile)
+admin.site.register(schedule)
