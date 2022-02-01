@@ -11,12 +11,16 @@ urlpatterns = [
 
     path('employees/', views.employeesList, name='employeesList'),
 
-    path('employees/<str:pk>', views.employee, name='one_employee'),
+    path('employees/<int:pk>/', views.employee, name='one_employee'),
 
     path('jobs/', views.positionList, name='positionsList'),
 
-    path('jobs/<str:pk>', views.position, name='one_position'),
+    path('jobs/<int:pk>/', views.position, name='one_position'),
 
+    path('jobs/add/', views.addPosition, name='add_position'),
+
+
+    path('employees/add/', views.addEmployee, name='add_employee'),
 
 
 

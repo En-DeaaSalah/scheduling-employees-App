@@ -56,3 +56,21 @@ def position(request, pk):
     positions = Job.objects.get(id=pk)
     serializer = JobSerializer(positions, many=False)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def addEmployee(request):
+    serializer = EmployeeSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def addPosition(request):
+    serializer = JobSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)

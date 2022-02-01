@@ -7,6 +7,10 @@ class Job(models.Model):
 
     position_name = models.TextField()
 
+    def __str__(self):
+
+        return self.position_name
+
 
 class Employee(models.Model):
 
@@ -53,7 +57,3 @@ class schedule(models.Model):
     endTime = models.TimeField(auto_now=False, auto_now_add=False)
 
     breakTime = models.IntegerField()  # 20 min example
-
-    def __str__(self):
-
-        return self.position+" --> "+self.employee
