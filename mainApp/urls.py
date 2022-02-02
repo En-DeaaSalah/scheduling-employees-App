@@ -9,13 +9,17 @@ urlpatterns = [
     # path('employees/', EmployeeApi.as_view())
 
 
-    path('employees/', views.employeesList, name='employeesList'),
+    path('employees/', views.get_employees_List, name='employeesList'),
 
-    path('employees/<int:pk>/', views.employee, name='one_employee'),
 
-    path('jobs/', views.positionList, name='positionsList'),
+    path('employees/<int:pk>/', views.get_employee, name='one_employee'),
 
-    path('jobs/<int:pk>/', views.position, name='one_position'),
+
+    path('jobs/', views.get_position_List, name='positionsList'),
+
+
+    path('jobs/<int:pk>/', views.get_position, name='one_position'),
+
 
     path('jobs/add/', views.addPosition, name='add_position'),
 
@@ -23,7 +27,13 @@ urlpatterns = [
     path('employees/add/', views.addEmployee, name='add_employee'),
 
 
+    path('schedule/', views.get_Positions_Assiment, name='get_all_jobs_assiment'),
 
+    path('assiment/', views.positionAssiment, name='get_all_jobs_assiment'),
+
+
+    path('assiment/<int:pk>', views.get_emp_of_position,
+         name='job_assiment_details'),
 
 
 ]

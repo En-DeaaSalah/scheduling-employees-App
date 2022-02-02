@@ -27,7 +27,15 @@ from .serializers import *
 
 
 @api_view(['GET'])
-def employeesList(request):
+def get_Positions_Assiment(request):
+
+    positionsAssiment = schedule.objects.all()
+    serializer = positionAssimentSerializer(positionsAssiment, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_employees_List(request):
 
     employee = Employee.objects.all()
     serializer = EmployeeSerializer(employee, many=True)
@@ -35,7 +43,7 @@ def employeesList(request):
 
 
 @api_view(['GET'])
-def positionList(request):
+def get_position_List(request):
 
     positions = Job.objects.all()
     serializer = JobSerializer(positions, many=True)
@@ -43,7 +51,7 @@ def positionList(request):
 
 
 @api_view(['GET'])
-def employee(request, pk):
+def get_employee(request, pk):
 
     employee = Employee.objects.get(id=pk)
     serializer = EmployeeSerializer(employee, many=False)
@@ -51,10 +59,20 @@ def employee(request, pk):
 
 
 @api_view(['GET'])
-def position(request, pk):
+def get_position(request, pk):
 
     positions = Job.objects.get(id=pk)
     serializer = JobSerializer(positions, many=False)
+    return Response(serializer.data)
+
+
+# give job id and return schedule details for this position (job)
+
+@api_view(['GET'])
+def get_emp_of_position(request, pk):
+
+    assiment = schedule.objects.get(position=pk)
+    serializer = positionAssimentSerializer(assiment, many=False)
     return Response(serializer.data)
 
 
@@ -74,3 +92,12 @@ def addPosition(request):
     if serializer.is_valid():
         serializer.save()
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def positionAssiment(request):
+    assiment = positionAssimentSerializer(data=request.data)
+
+    if assiment.is_valid():
+        assiment.save()
+    return Response(assiment.data)

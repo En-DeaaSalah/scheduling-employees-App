@@ -29,3 +29,16 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         model = EmployeeProfile
         fields = '__all__'
+
+
+class positionAssimentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = schedule
+        fields = '__all__'
+
+
+class emp_of_position_serializer(serializers.Serializer):
+
+    pass
